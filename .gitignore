@@ -1,0 +1,81 @@
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.DocumentRevisions-V100
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+.apdisk
+*.icloud
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# IDE
+.idea
+.vscode
+**/.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+.history
+.ionide
+*.vsix
+
+# Misc
+*.cache
+*.log
+**/*.log
+.env
+**/.env
+**/*.env
+*.env
+!.env.example
+!**/.env.example
+
+# Node
+node_modules
+**/node_modules
+
+# SSH
+**/.ssh/id_*
+**/.ssh/*_id_*
+**/.ssh/known_hosts
+
+# Zsh
+*.zwc
+*.zwc.old
+*zcompdump*
+
+# Claude Code
+
+**/zz__archived
+zz__archived
+*/CLAUDE.md
+/**/CLAUDE.md
+*/tmp
+tmp/**
+.claude
+**/.claude
+.claude/settings.local.json
+
+
+# No planning or reports
+/docs/plans
+/docs/tmp
+**/docs/tmp
+**/docs/plans
+**/superpowers

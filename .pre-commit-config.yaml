@@ -1,0 +1,25 @@
+# Make sure you have the pre-commit framework installed. install hooks from this config file with `pre-commit install-hooks`
+repos:
+  - repo: https://github.com/betterleaks/betterleaks
+    rev: v8.21.0
+    hooks:
+      - id: betterleaks
+
+  - repo: https://github.com/mishan/no-ai-marks
+    rev: v0.1.1
+    hooks:
+      - id: no-ai-marks-commit-msg
+      - id: no-ai-marks-staged
+   
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+  rev: 0.38.1
+  hooks:
+    - id: check-compose-spec
+    - id: check-dependabot
+    - id: check-github-workflows
+    - id: check-github-actions
+  - repo: https://github.com/thlorenz/doctoc
+    rev: 2.5.0 # substitute a tagged version
+    hooks:
+      - id: doctoc
+      - args: --github --min-level 2 --max-level 3 --mintocitems 3
