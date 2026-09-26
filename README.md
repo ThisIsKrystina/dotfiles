@@ -1,16 +1,16 @@
 <br/>
 <div align="center">
-<a href="https://github.com/ThisIsKrystina/gh-template">
-<img src="https://picsum.photos/400" alt="Logo" width="80" height="80">
-<!-- <img src="https://skillicons.dev/icons?i=git,github,bash" /> --->
+<a href="https://github.com/ThisIsKrystina/dotfiles">
+<!--<img src="https://picsum.photos/400" alt="Logo" width="80" height="80">-->
+<img src="https://skillicons.dev/icons?i=bash" />
 </a>
-<h1 align="center">{{PROJECT_NAME}}</h1>
+<h1 align="center">dotfiles</h1>
   <!----badges here!--->
 <p align="center">
-{{PROJECT_DESCRIPTION}}
+A backup of my personal settings for CLI apps. 
 <br/>
 <br/>
-<a href="https://github.com/ThisIsKrystina/"><strong>Explore the docs »</strong></a>
+<!---<a href="https://github.com/ThisIsKrystina/"><strong>Explore the docs »</strong></a>
 <br/>
 <br/>
 <!--<a href="https://github.com/ShaanCoding/ReadME-Generator/">View Demo .</a>  
@@ -21,21 +21,20 @@
 
 ## About
 
-![Product Screenshot](https://picsum.photos/1920/1080)
+<!--![Product Screenshot](https://picsum.photos/1920/1080)
+-->
+When I had to use the terminal for the first time, I thought "what fresh hell is this?" 
 
-I like READMEs that get to the point quickly. 
+I've come around to it, but it's still challenging because of my neurospicy flavor. Luckily, there are all sorts of CLI tools, tricks, and settings to make the terminal a more user-friendly (and visual) experience.
 
-**Features:**
-- One
-- Two
-- Three
+This is my (growing) collection of settings, scripts, and other resources so CLI doesn't make me cry.
 
-**Jump ahead:**
+<!--**Jump ahead:**
 <!-- START doctoc -->
 {{toc}}
 <!-- END doctoc -->
 
-## Prerequisites
+<!--## Prerequisites
 
 You'll need the following tools installed: 
 
@@ -109,7 +108,7 @@ Distributed under the MIT License. See [MIT License](https://opensource.org/lice
 - [Made by Human](https://madebyhuman.iamjarl.com) badges
 - My optometrist, because my eyes are screwed.
 
-<!--
+
 - [makeread.me](https://github.com/ShaanCoding/ReadME-Generator)
 - --->
 
