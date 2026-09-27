@@ -53,7 +53,16 @@ rgs() {
   fzf --ansi --delimiter : --preview "bat --color=always {1} --highlight-line {2}"
 }
 
-# Option A: skip preview on narrow terminals, just list
+rgf() {
+  rg --line-number --no-heading --color=always --smart-case "$@" |
+    fzf --ansi --delimiter ':' \
+        --preview 'bat --color=always --highlight-line {2} {1}' \
+        --preview-window '+{2}/2'
+}
+
+
+# Option A: skip preview on narrow terminals, just list 
+
 jview() {
   local cols=$(tput cols)
   if [ "$cols" -lt 60 ]; then
@@ -66,6 +75,7 @@ jview() {
 }
 
 # --- Markdown: fzf picks file, preview shows headings, Enter opens treemd ---
+
 mdview() {
   fd -t f -e md "$1" | \
   fzf --preview 'treemd -l {} 2>/dev/null || head -20 {}' \
