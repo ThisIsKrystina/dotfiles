@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # @example error "This is an error!"
 

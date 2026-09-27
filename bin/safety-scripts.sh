@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # Credit: https://github.com/jmagar/claude-homelab/blob/main/docs/references/security-patterns.md
 

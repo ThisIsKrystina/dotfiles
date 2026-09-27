@@ -1,6 +1,6 @@
-#!bin/bash
+#!/bin/bash
 
-source config.env
+source "${BASH_SOURCE[0]%/*}/config.env"
 # Jump to repo and output status
 repo() {
 local dir=$REPO_HOME
