@@ -1,5 +1,7 @@
 # OS
 .DS_Store
+dot_DS_Store
+**/dot_DS_Store
 .AppleDouble
 .LSOverride
 ._*
@@ -82,6 +84,12 @@ tmp/**
 
 # for backups explicitly
 
+# Internal audit / working docs (not for public repo)
+SECURITY-AUDIT.md
+
+# Local WIP not ready for the repo
+apps/monitor-detected.sh
+
 # Never version these
 .api_key
 credentials.json
@@ -90,6 +98,11 @@ secrets/
 *.pem
 auth.json
 *.token
+
+# Secure ShellFish rc: contains per-install push key/user/iv (device secret).
+# Managed per-machine by the ShellFish app itself, never committed.
+home/private_executable_dot_shellfishrc
+**/*shellfishrc
 
 # Claude Code runtime / cache (machine-specific, not portable)
 /home/.claude/cache/
