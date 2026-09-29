@@ -17,5 +17,5 @@ fi
 error() {
     local message="${1:-Unknown Error}"
     # Print to stderr (>&2) with red bold color, then reset
-    printf "${RED}${BOLD}[ERROR]${RESET} %s\n" "$message" >&2
+    printf "${RED}${BOLD}[ERROR]${RESET} %s\n" "${message}" >&2
 }   

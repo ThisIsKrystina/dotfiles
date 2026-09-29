@@ -6,7 +6,7 @@
 # @example user_query=$(sanitize_input "$1")
 sanitize_input() {
     local input="$1"
-    echo "$input" | sed 's/[;&|`$(){}[\]<>\\]//g' | tr -d '\n\r'
+    echo "${input}" | sed 's/[;&|`$(){}[\]<>\\]//g' | tr -d '\n\r'
 }
 
 
@@ -26,7 +26,7 @@ sanitize_input() {
 # curl "https://api.example.com/search?q=${search_term}"
 url_encode() {
     local string="$1"
-    printf '%s' "$string" | jq -sRr @uri
+    printf '%s' "${string}" | jq -sRr @uri
 }
 
 # @description -  Validate file paths to prevent directory traversal attacks.
@@ -37,16 +37,16 @@ validate_path() {
     local base_dir="$2"
 
     # Resolve to absolute path
-    local abs_path=$(realpath -m "$file_path" 2>/dev/null)
-    local abs_base=$(realpath "$base_dir")
+    local abs_path=$(realpath -m "${file_path}" 2>/dev/null)
+    local abs_base=$(realpath "${base_dir}")
 
     # Check if path starts with base directory
-    if [[ "$abs_path" != "$abs_base"* ]]; then
-        log_error "Invalid path: $file_path (outside base directory)"
+    if [[ "${abs_path}" != "${abs_base}"* ]]; then
+        error "Invalid path: ${file_path} (outside base directory)"
         return 1
     fi
 
-    echo "$abs_path"
+    echo "${abs_path}"
 }
 
 
@@ -61,11 +61,11 @@ parse_json_safely() {
     local key="$2"
 
     # Check if valid JSON
-    if ! echo "$json" | jq empty 2>/dev/null; then
-        log_error "Invalid JSON response"
+    if ! echo "${json}" | jq empty 2>/dev/null; then
+        error "Invalid JSON response"
         return 1
     fi
 
     # Extract value
-    echo "$json" | jq -r ".$key // empty"
+    echo "${json}" | jq -r ".${key} // empty"
 }

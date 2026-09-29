@@ -1,9 +1,11 @@
 # Anything with PG
 run_pg() {
 local command="$1"
-PG_CONTAINER="postgres-shared"
+local pg_container="postgres-shared"
 
-printf "$command" | docker exec -i "$PG_CONTAINER" psql -U postgres
+# '%s' keeps the SQL literal — a bare "${command}" would treat any % as a
+# printf format directive and mangle the query.
+printf '%s\n' "${command}" | docker exec -i "${pg_container}" psql -U postgres
 }
 
 # --- Docker: fuzzy-pick a container, exec in ---
