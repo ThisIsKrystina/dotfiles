@@ -1,0 +1,20 @@
+# If you want Terminal Emulator handle mouse event
+# turn off "use_mouse"
+use_mouse = true;
+
+# Indent controls where manual's content start for each line
+indent = 7;
+
+# Supported Keybinding: "mdn", "vim", "less"
+control_scheme = "less";
+
+# If you want Terminal Emulator handle mouse event
+# turn off "use_mouse"
+use_mouse = true;
+
+# Indent controls where manual's content start for each line
+indent = 7;
+
+# Supported Keybinding: "mdn", "vim", "less"
+control_scheme = "less";
+

@@ -1,0 +1,43 @@
+# ===============
+# INSTRUCTIONS 
+# ---------------
+# 1. Add new aliases to the end of this file. (See "SYNTAX")
+# 2. Save this file and exit. 
+# 3. Reload your config file to apply the changes. (See "HOW TO AUTOLOAD ALIASES")
+#
+# ---------------
+# SYNTAX 
+# ---------------
+# 
+# alias [alias_name]='[your_command_here]'
+#
+# ----------------
+# HOW TO AUTO-LOAD ALIASES
+# ----------------
+# 1. Edit ~/.bash_profile
+# 2. Add this to the end of the file: `source ~/.bash_aliases` (aka the name of this file)
+# 3. Save and close ~/.bash_profile.
+# 4. Reload your shell config to apply the changes: `source ~/.bash_profile`
+#
+# ==================
+
+
+# Aliases
+
+# DOCKER
+alias docker-tunnel="docker context use pipi-prod"
+alias docker-local="docker context use default"
+ 
+# === eza aliases ===
+alias ls="eza  --grid --long --group-directories-first --icons=auto --hyperlink"
+alias ll="eza -l --grid --long --git --group-directories-first --icons=auto --header --hyperlink=always"
+alias la="eza -la --grid --long --git --group-directories-first --icons=auto --hyperlink=always"
+alias lt="eza --tree --level=2 --group-directories-first --icons=auto --hyperlink=always"
+alias lm="eza -la --git --sort=modified --reverse --group-directories-first --icons=auto --hyperlink=always"
+alias big="eza -la --sort=size --reverse | head -20 --hyperlink=always"
+
+alias u1="cd .."
+alias u2="cd ../.."
+alias u3="cd ../../.."
+
+alias where="pwd"

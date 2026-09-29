@@ -1,0 +1,31 @@
+# SHELL SETTINGS
+
+# Global helper scripts
+source ~/Projects/_active/dotfiles/bin/01-helpers.sh
+source ~/.bash_aliases
+# Secure ShellFish rc is per-machine (not chezmoi-managed) — guard it
+[ -r ~/.shellfishrc ] && source ~/.shellfishrc
+
+# ======== MOBILE SETTINGS
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+
+# ========== SUPER IMPORTANT COMMANDS ====================
+source ~/.config/.shortcutsrc
+
+
+
+# Load the rest of .bashrc configs
+if [ -d "$HOME/.bashrc.d" ]; then
+    for config in "$HOME/.bashrc.d"/*.bashrc; do
+        [ -r "$config" ] && source "$config"
+    done
+fi
+
+# Load bin scripts (dir + extension, not a glob). Skip 01-helpers.sh —
+# it's already sourced at the top of this file.
+src_dir ~/Projects/_active/dotfiles/bin sh 01-helpers.sh

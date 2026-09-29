@@ -1,0 +1,21 @@
+{
+    "colorscheme": "dracula",
+    "softwrap": true,
+    "wordwrap": true,
+    "tabsize": 2,
+    "hlsearch": true,
+    "hltrailingws": true,
+    "hltaberrors": true,
+    "keymenu": true,
+    "matchbracestyle": "highlight",
+    "syntax": true,
+    "saveundo": true,
+    "scrollbar": true,
+    "linter": true,
+    "status": true,
+    "comment": true,
+    "diff": true,
+    "ftoptions": true,
+    "autoclose": true
+    
+}

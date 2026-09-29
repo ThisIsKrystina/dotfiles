@@ -1,0 +1,33 @@
+# ===== ANYTHING THAT NEEDS EXPORTING TO PATH =====
+
+# Add local bin to PATH so you can run local scripts bc that's not default for some reason??
+export PATH="$HOME/.local/bin:$PATH"
+# Use normal names instead of g+ for coreutils
+export PATH="{{ .brew_prefix }}/opt/coreutils/libexec/gnubin:$PATH"
+
+# Use normal "grep" instead of "ggrep"
+PATH="{{ .brew_prefix }}/opt/grep/libexec/gnubin:$PATH"
+
+
+# PIP
+export PATH="$PATH:/usr/local/bin/pip3"
+
+# Ffmpeg
+export PATH="$PATH:{{ .brew_prefix }}/bin/ffmpeg"
+
+# bun 
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Git Filter Repo if you really fucked up your commits
+export PATH="$PATH:{{ .brew_prefix }}/bin/git-filter-repo"
+
+# Virtualenvwrapper for Python (only if installed — avoids errors on fresh machines)
+if command -v virtualenvwrapper.sh >/dev/null 2>&1; then
+    source "$(command -v virtualenvwrapper.sh)"
+fi
+
+# Copy SSH ID
+export PATH="{{ .brew_prefix }}/opt/ssh-copy-id/bin:$PATH"
+# Ruby gem commands
+export PATH="{{ .brew_prefix }}/lib/ruby/gems/4.0.0/bin:$PATH"

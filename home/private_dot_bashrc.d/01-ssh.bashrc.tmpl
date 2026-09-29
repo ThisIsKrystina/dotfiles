@@ -1,0 +1,22 @@
+# SHELL SETTINGS
+
+# ========SSH SETTINGS==========
+{{ if eq .chezmoi.os "darwin" -}}
+# Set 1Password as SSH key agent
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+# Start the SSH Agent
+eval $(ssh-agent -s) >/dev/null 2>&1 #silently
+# Add SSH keys to the agent for GitHub 
+ssh-add --apple-use-keychain ~/.ssh/github_auth >/dev/null 2>&1 
+ssh-add --apple-use-keychain ~/.ssh/github_sign >/dev/null 2>&1
+
+
+# Suppress the deprecated flag warning
+export APPLE_SSH_ADD_BEHAVIOR="Apple"
+{{ else if eq .chezmoi.os "linux" -}}
+# Pi stuff here
+{{ end -}}
+
+
+

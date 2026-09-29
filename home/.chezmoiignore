@@ -1,0 +1,6 @@
+# chezmoi ignores these TARGET paths (matched against the deployed filename,
+# relative to $HOME — NOT the source_ name).
+
+# Secure ShellFish integration holds a per-install push key/user/iv.
+# Installed per-machine by the ShellFish app, so chezmoi does not manage it.
+.shellfishrc

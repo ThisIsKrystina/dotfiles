@@ -1,0 +1,30 @@
+#==========AUTO-COMPLETIONS=================
+# Add any auto-completions for CLI tools
+
+# Anything installed via Homebrew
+if type brew &>/dev/null
+then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+  then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+    do
+      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+    done
+  fi
+fi
+
+# 1Password CLI
+source <(op completion bash)
+source <(gh completion -s bash)
+source <(bat --completion bash)
+# fx json viewer
+complete -o filenames -C fx fx
+
+# chezmoi
+source <(chezmoi completion bash)
+
+# treemd shell completion
+source <(COMPLETE=bash treemd)

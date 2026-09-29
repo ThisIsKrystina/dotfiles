@@ -1,0 +1,24 @@
+# =========PRETTIFY THINGS============
+#FG=$(tput setaf)
+#BG=$(tput sefab)
+#GREEN=$(tput setaf2)
+#BLUE=$(tput setaf4)
+#RED=$(tput setaf1)
+#YELLOW=$(tput setaf 3)
+#PURPLE=
+#MAGENTA=$(tput setaf 5)
+#CYAN=$(tput setaf 6)
+#RESET=$(tput sgr0)
+#DIM=$(tput dim)
+#BOLD=$(tput bold)
+#YELLOW=$(tput setaf 3)UNDERLINE= $(tput smul)
+
+# ====== THIS HAS TO BE LAST ==========
+
+ if has fastfetch; then
+  fastfetch
+  fi
+#==== THIS TOO ===============
+if has starship; then 
+  eval "$(starship init bash)"
+fi

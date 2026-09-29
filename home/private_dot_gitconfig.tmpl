@@ -1,0 +1,159 @@
+[filter "lfs"]
+# works with .gitattributes to ID which files should be processed via LFS
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Krystina
+	email = 112989839+ThisIsKrystina@users.noreply.github.com
+{{ if eq .chezmoi.os "darwin" -}}
+	# macOS: 1Password SSH agent signs; signingkey is the PUBLIC key it matches
+	signingkey = {{ onepasswordRead "op://Private/github_sign/public key" }}
+{{ else -}}
+	# Linux/Pi (headless): ssh-keygen signs with the private key file directly
+	signingkey = ~/.ssh/github_sign
+{{ end -}}
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+{{ if eq .chezmoi.os "darwin" -}}
+	# macOS: sign via the 1Password SSH agent helper
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{ end -}}
+[commit]
+	gpgSign = true
+	verbose = true
+	template = ~/.config/git/.gitmessage
+
+# INCLUDES
+# --------
+# Local/Private config goes in the include
+[include]
+  path = ~/.gitconfig.local
+  path = ~/.config/delta/dracula.gitconfig
+  
+# URL ALIASES
+# -----------
+# Alias for Dracula Org repositories
+[url "https://github.com/dracula/"]
+  insteadOf = dracula://
+
+[core]
+  excludesfile = ~/.config/git/ignore
+# VS Code
+  editor = code --wait
+# Don't consider trailing space change a cause for merge conflicts
+  whitespace = -trailing-space
+  pager = delta 
+
+[merge]
+  conflictStyle = zdiff3
+
+[pull]
+	rebase = true
+[init]
+	defaultBranch = prod
+	# templatedir = /Users/KrystinaMartinez/Projects/_active/dotfiles/packages/git/git-templates/.git-template.global
+[column]
+	ui = auto
+[branch]
+#	sort = =committerdate
+[diff]
+
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+  tool = vscode
+  cmd = code --wait --diff $LOCAL $REMOTE
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+# misc
+
+[help]
+  autocorrect = autocorrect
+[rerere]
+	enabled = true
+	autoUpdate = true
+	{{ if ne .chezmoi.os "darwin" -}}
+[url "ssh://git@ssh.github.com:443/"]
+	insteadOf = git@github.com:
+{{ end -}}
+
+[alias]
+# All credit to this: https://gist.github.com/tdd/470582
+# Force pushing won't lose anyone else's work (just mine)
+  push-with-lease = push --force-with-lease
+  # List local commits that were not pushed to remote repository
+  review-local = "!git lg @{push}.."
+  # Update last commit with staged files without rewriting message
+  oops = commit --amend --no-edit
+  # Remove file(s) from Git but not from disk
+  untrack = rm --cached 
+  # undo last commit but keep changed files in staging
+  untrack-dir= rm -r --cached 
+  uncommit = reset --soft HEAD~1
+# Edit last commit message
+  reword = commit --amend
+
+# COLORS
+# ------
+# Dracula Dark Theme
+[color]
+  ui = true
+[color "branch"]
+  current = cyan bold reverse
+  local = white
+  plain =
+  remote = cyan
+[color "diff"]
+  commit =
+  func = cyan
+  plain =
+  whitespace = magenta reverse
+  meta = white
+  frag = cyan bold reverse
+  old = red
+  new = green
+[color "grep"]
+  context =
+  filename =
+  function =
+  linenumber = white
+  match =
+  selected =
+  separator =
+[color "interactive"]
+  error =
+  header =
+  help =
+  prompt =
+[color "status"]
+  added = green
+  changed = yellow
+  header =
+  localBranch =
+  nobranch =
+  remoteBranch = cyan bold
+  unmerged = magenta bold reverse
+  untracked = red
+  updated = green bold
+[interactive]
+  diffFilter = delta --color-only
+# Tool-specific settings
+[delta]
+  navigate = true
+  hyperlinks = true
+  hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+  features = dracula
+[rebase]
+	autoStash = true

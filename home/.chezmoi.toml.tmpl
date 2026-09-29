@@ -1,0 +1,64 @@
+{{- /* This file supports Go's text/template language. */ -}}
+{{- /* It generates ~/.config/chezmoi/chezmoi.toml on `chezmoi init`.      */ -}}
+{{- /* Declare the default ONCE with :=, then reassign with = inside the  */ -}}
+{{- /* if block so the variable stays in scope below.                     */ -}}
+{{- $brewPrefix := "/opt/homebrew" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   $brewPrefix = "/home/linuxbrew/.linuxbrew" -}}
+{{- end -}}
+{{- /* Hook scripts live OUTSIDE the source tree (repo root), so chezmoi does */ -}}
+{{- /* not try to run them as apply-scripts. workingTree = the git repo root. */ -}}
+{{- $scripts := printf "%s/chezmoi-hooks" .chezmoi.workingTree -}}
+
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+interactive = true
+progress = true
+verbose = true
+pager = "delta"
+encryption = "age"
+
+[data]
+    home = {{ .chezmoi.homeDir | quote }}
+    brew_prefix = {{ $brewPrefix | quote }}
+    brew_bin = {{ printf "%s/bin" $brewPrefix | quote }}
+
+[add]
+secrets = "error"
+
+[age]
+identity = "~/.config/chezmoi/key.txt"
+recipient = "age130lu6jzffmsh6eanu9mym8el3gtvk5a36fxvta74k0sc0h7gnegserk2dk"
+
+[diff]
+pager = "delta"
+pagerArgs = ["--keep-plus-minus-markers"]
+
+[edit]
+apply = true
+watch = true
+
+[onepassword]
+prompt = false
+
+# Re-run init automatically after editing this config template.
+[hooks.edit-config-template.post]
+command = "chezmoi"
+args = ["init", "--branch", "prod"]
+
+# Ephemeral age key: fetched from 1Password before reading state, shredded after.
+# Script paths render absolute at init time from .chezmoi.workingTree (repo root).
+[hooks.read-source-state.pre]
+    command = "bash"
+    args = ["{{ $scripts }}/fetch-age-key.sh"]
+
+[hooks.apply.post]
+    command = "bash"
+    args = ["{{ $scripts }}/remove-age-key.sh"]
+
+[hooks.diff.post]
+    command = "bash"
+    args = ["{{ $scripts }}/remove-age-key.sh"]
+
+[hooks.status.post]
+    command = "bash"
+    args = ["{{ $scripts }}/remove-age-key.sh"]

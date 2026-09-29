@@ -1,0 +1,34 @@
+# ======= HOMEBREW =========
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ========TOOL COMMANDS IN PATH =========
+# Homebrew - turn on command handler
+
+HOMEBREW_COMMAND_NOT_FOUND_HANDLER="$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
+
+if [ -f "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER" ]; then
+  source "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER";
+fi
+
+
+# Ruby gem commands
+export PATH="/opt/homebrew/lib/ruby/gems/4.0.0/bin:$PATH"
+
+#==========AUTO-COMPLETIONS=================
+
+# Add auto-completions for anything installed via Homebrew
+if type brew &>/dev/null
+then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+  then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+    do
+      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+    done
+  fi
+fi
+
+
