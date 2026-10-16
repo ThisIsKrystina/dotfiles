@@ -29,15 +29,29 @@ alias docker-tunnel="docker context use pipi-prod"
 alias docker-local="docker context use default"
  
 # === eza aliases ===
-alias ls="eza  --grid --long --group-directories-first --icons=auto --hyperlink"
+alias ls="eza --grid --long --group-directories-first --icons=auto --hyperlink"
 alias ll="eza -l --grid --long --git --group-directories-first --icons=auto --header --hyperlink=always"
 alias la="eza -la --grid --long --git --group-directories-first --icons=auto --hyperlink=always"
 alias lt="eza --tree --level=2 --group-directories-first --icons=auto --hyperlink=always"
 alias lm="eza -la --git --sort=modified --reverse --group-directories-first --icons=auto --hyperlink=always"
 alias big="eza -la --sort=size --reverse | head -20 --hyperlink=always"
 
+# === Navigating folders
 alias u1="cd .."
 alias u2="cd ../.."
 alias u3="cd ../../.."
 
 alias where="pwd"
+
+# ==== If you use Kitty terminal
+alias kssh="kitten ssh"
+alias kkeys="kitten show-key"
+alias kedit="kitten edit-in-kitty"
+alias kcp="kitten clipboard"
+alias krem='kitten @'
+
+# Command to show URL schemes for MacOS apps
+# Useful for automation
+alias lsregister="/System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister"
+alias lsra="lsregister -dump URLSchemeBinding"
+lsr="lsregister -dump URLSchemeBinding | grep"
