@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# @description: You could use this in a MacOS quick action so you can just run this on every folder. 
+# Checks if the input is a file or folder first before proceeding. 
+# Credit: xavid for the jq syntax because i cant be trusted 
+# @link: https://xavd.id/blog/post/migrating-alfred-snippets-to-raycast/ for the syntax
+
+# You need this if running in Automator
+eval "$(/opt/homebrew/bin/brew shellenv)"
+for f in "$@"; do
+CURRENT=${f}
+# On Alfred snippet file
+    if [[ "${f}" == *.alfredsnippets ]]; then
+    DIR=$(dirname "${CURRENT}")
+FILENAME=$(basename "${CURRENT}")
+NAME="${FILENAME%.*}"
+    SLUG=$(echo "${NAME}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//;s/-$//')
+    NEW_FILE="${DIR}/${SLUG}-snippety.json"
+
+$(snippety-migrate "${CURRENT}" --format alfred --collection '"${NAME}"' --tag imported --formatted rich --output "${NEW_FILE}") 
+
+    
+    elif [ -d "${f}" ]; then
+    # JQ specific path
+        echo "Merging ${f} collection..."
+
+        # Proceed with folder-specific commands
+jq -s 'map(.alfredsnippet | {name, keyword, text: .snippet})' "${CURRENT}"/*.json > "${CURRENT}/merged_collection.json"
+    else
+        echo "${f} is neither a file nor a folder"
+    fi
+done
