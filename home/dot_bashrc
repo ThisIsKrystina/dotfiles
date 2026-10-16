@@ -2,8 +2,22 @@
 
 # Global helper scripts
 source ~/Projects/_active/dotfiles/bin/01-helpers.sh
-source ~/.bash_aliases
-# Secure ShellFish rc is per-machine (not chezmoi-managed) — guard it
+
+# Default options
+shopt -s autocd # open a directory without cd
+shopt -s cdspell # fix typos on cd command
+shopt -s globskipdots # expand ../
+shopt -s globstar # Makes */** work
+shopt -s inherit_errexit
+shopt -s nocaseglob # glob patterns case insensitive
+shopt -s expand_aliases
+shopt -s progcomp
+
+if [[ -f ~/.bash_aliases ]]; then
+  source ~/.bash_aliases
+fi
+
+# Secure ShellFish rc is different per machine (Chezmoi doesn't touch it)
 [ -r ~/.shellfishrc ] && source ~/.shellfishrc
 
 # ======== MOBILE SETTINGS
@@ -13,12 +27,6 @@ case $- in
       *) return;;
 esac
 
-
-# ========== SUPER IMPORTANT COMMANDS ====================
-source ~/.config/.shortcutsrc
-
-
-
 # Load the rest of .bashrc configs
 if [ -d "$HOME/.bashrc.d" ]; then
     for config in "$HOME/.bashrc.d"/*.bashrc; do
@@ -26,6 +34,7 @@ if [ -d "$HOME/.bashrc.d" ]; then
     done
 fi
 
-# Load bin scripts (dir + extension, not a glob). Skip 01-helpers.sh —
+# Load bin scripts (dir + extension, don't need glob). Skip 01-helpers.sh —
 # it's already sourced at the top of this file.
 src_dir ~/Projects/_active/dotfiles/bin sh 01-helpers.sh
+src_dir ~/.local/lib sh
