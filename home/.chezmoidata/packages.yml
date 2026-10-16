@@ -27,9 +27,6 @@ packages:
     - 'htop'
   linux:
     brews:
-    - 'git'
-    - 'gh'
-    - 'op'
     - 'nano'
     - 'bash'
     - 'micro'
@@ -44,13 +41,12 @@ packages:
     - 'eget'
     - 'pandoc'
     - 'pre-commit'
-    - 'tre-command'
+    - 'tre'
     - 'treemd'
     - 'starship'
     - 'uv'
-    - 'oven-sh/bun/bun'
     - 'tmux'
-    - 'htop' 
+    - 'cronboard' 
     
     casks:
     - '1password-cli'
