@@ -13,11 +13,6 @@ cya() {
   eza -lah --sort=modified -r ~/backups/
 }
 
-# --- /etc/ fuzzy file finder (opens in $EDITOR) ---
-# sets fallback to nano instead of vim because wtf
-etc() {
-  fd -t f "$1" /etc/ | fzf | xargs -r "${EDITOR:-nano}"
-}
 
 # --- Services: fuzzy-pick a service, show its status (Linux + macOS) ---
 svc() {
@@ -89,20 +84,6 @@ st() {
   echo "── MEM:  $(_st_mem) ──"
   echo "── LOAD: $(_st_load) ──"
 }
-
-# Fuzzy interactive ripgrep — type a partial string, arrow through hits
-rgs() {
-  rg --column --line-number --no-heading --color=always "$1" | \
-  fzf --ansi --delimiter : --preview "bat --color=always {1} --highlight-line {2}"
-}
-
-rgf() {
-  rg --line-number --no-heading --color=always --smart-case "$@" |
-    fzf --ansi --delimiter ':' \
-        --preview 'bat --color=always --highlight-line {2} {1}' \
-        --preview-window '+{2}/2'
-}
-
 
 # Option A: skip preview on narrow terminals, just list 
 
