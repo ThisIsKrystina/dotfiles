@@ -17,7 +17,7 @@ NAME="${FILENAME%.*}"
     SLUG=$(echo "${NAME}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//;s/-$//')
     NEW_FILE="${DIR}/${SLUG}-snippety.json"
 
-$(snippety-migrate "${CURRENT}" --format alfred --collection '"${NAME}"' --tag imported --formatted rich --output "${NEW_FILE}") 
+snippety-migrate "${CURRENT}" --format alfred --collection "${NAME}" --tag imported --formatted rich --output "${NEW_FILE}"
 
     
     elif [ -d "${f}" ]; then
