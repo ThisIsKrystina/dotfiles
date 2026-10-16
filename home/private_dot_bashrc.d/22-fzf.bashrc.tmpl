@@ -1,0 +1,34 @@
+# ====== FZF SETTINGS ========================================================
+# Two buckets, two homes:
+#   1. ENV VARS (below)        -> the COMMANDS fzf runs + per-keybinding opts.
+#                                 fzf has no config file for these.
+#   2. ~/.config/fzf/.fzfrc    -> all the DISPLAY/BEHAVIOR flags, loaded via
+#                                 FZF_DEFAULT_OPTS_FILE. The "ton of options"
+#                                 live there now — centralized, as you wanted.
+#
+# DO NOT put FZF_* env vars in .fzfrc: fzf reads that file as command-line
+# flags and dies with "unknown option". Env vars belong HERE.
+
+# Where fzf reads its display flags from (needs fzf >= 0.48; you have 0.74).
+export FZF_DEFAULT_OPTS_FILE="${HOME}/.config/fzf/.fzfrc"
+
+# What fzf lists: default + Ctrl-T (files) + Alt-C (cd into dir). Powered by fd.
+export FZF_DEFAULT_COMMAND='fd --type=f --hidden --follow --exclude=.git'
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+export FZF_ALT_C_COMMAND='fd --type=d --hidden --follow --exclude=.git'
+
+# Per-keybinding previews (eza for dirs, bat for files).
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always {}'"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers {}'"
+
+# Shell integration: Ctrl-T / Ctrl-R / Alt-C keybindings + path completion.
+# Runs ONCE at shell startup (not inside a wrapper). ble.sh attaches after this.
+# eval "$(fzf --bash)"
+
+# When ble.sh is active, load ITS fzf integration so Ctrl-T / Ctrl-R / Alt-C
+# keep working under the ble.sh line editor (fzf's own readline bindings don't
+# fire once ble.sh takes over). -d = delayed until ble.sh finishes attaching.
+# if [[ ${BLE_VERSION-} ]]; then
+#    ble-import -d integration/fzf-key-bindings
+#    ble-import -d integration/fzf-completion
+# fi

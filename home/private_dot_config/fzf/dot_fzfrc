@@ -1,0 +1,40 @@
+# fzf display options — loaded via FZF_DEFAULT_OPTS_FILE (set in 22-fzf.bashrc).
+#
+# THIS FILE = fzf COMMAND-LINE FLAGS ONLY. Exactly what you'd type after `fzf`.
+# One or many per line; newlines count as spaces. NO shell, NO variables, NO
+# FZF_* env vars here (those caused the original "unknown option" error).
+
+# --- Behavior (ADHD-friendly: predictable, always-on context) ---------------
+--layout=reverse        # list grows down from a prompt at the top (natural read)
+--height=~80%           # keep some screen context; ~ shrinks to fit short lists
+--info=inline           # match count on the prompt line, not its own row
+--cycle                 # wrap around at the ends — no dead stops
+--scroll-off=3          # keep a few lines visible above/below the cursor
+--header-first
+--pointer=▶
+--marker=✓
+--prompt='❯ '
+
+# --- Keys (low-friction muscle memory) --------------------------------------
+--bind=ctrl-/:toggle-preview
+--bind=ctrl-u:preview-half-page-up
+--bind=ctrl-d:preview-half-page-down
+--bind=tab:toggle+down
+--bind='ctrl-y:execute-silent(echo -n {} | pbcopy)'
+
+# --- Preview: always show what you're about to pick (files AND folders) -----
+--preview='[ -d {} ] && eza --tree --level=2 --color=always {} || bat --color=always --style=numbers {}'
+--preview-window=up:60%:wrap
+
+# --- Dracula neon theme + borders (your community-shared colors) ------------
+--style=full
+--border=rounded
+--input-border=block
+--list-border=double
+--header-border=inline
+--preview-border=double
+--color=fg:#f8d7ff,bg:#1a0633,hl:#01cdfe,fg+:#fffb96,bg+:#2d1259
+--color=hl+:#05ffa1,info:#b967ff,prompt:#ff71ce,pointer:#ff1493
+--color=marker:#ff6ec7,spinner:#05ffa1,header:#01cdfe,border:#ff71ce
+--color=label:#fffb96,separator:#b967ff,scrollbar:#ff71ce
+--color=gutter:#2d1259
