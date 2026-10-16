@@ -7,17 +7,14 @@ eval "$({{ .brew_bin }}/brew shellenv)"
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
     source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
+    # Only claim the kitty terminfo when we're ACTUALLY in kitty. Outside kitty
+    # (plain tty, another terminal), forcing this misleads apps about the term.
+    export "TERM=xterm-kitty"
 fi
-
 # Micro editor setup
 if has micro; then
     export "MICRO_TRUECOLOR=1"
     export "EDITOR={{ .brew_bin }}/micro"
-fi
-
-# fzf shell integration
-if has fzf; then
-    eval "$(fzf --bash)"
 fi
 
 # ==== HELPFUL PORTS FROM BASH-IT ======
@@ -37,3 +34,25 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.
 shopt -s globstar
+
+tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
+
+{{- if eq .chezmoi.os "linux" -}}
+
+# make less more friendly for non-text input files, see lesspipe(1)
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in prompt)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+{{- end -}}
