@@ -1,0 +1,507 @@
+{
+  "data": [
+    {
+      "body": {
+        "data": [
+          {
+            "gid": "1212596232751635",
+            "resource_type": "custom_type",
+            "name": "Code Issue",
+            "asana_created_type_identifier": null,
+            "status_options": [
+              {
+                "gid": "1212596232751627",
+                "resource_type": "custom_type_status_option",
+                "name": "open",
+                "enabled": true,
+                "color": "indigo",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1212596232751629",
+                "resource_type": "custom_type_status_option",
+                "name": "triage",
+                "enabled": false,
+                "color": "blue-green",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1213697776291492",
+                "resource_type": "custom_type_status_option",
+                "name": "needs research",
+                "enabled": false,
+                "color": "none",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1212596232751628",
+                "resource_type": "custom_type_status_option",
+                "name": "scope & review",
+                "enabled": false,
+                "color": "magenta",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1212596232751631",
+                "resource_type": "custom_type_status_option",
+                "name": "prioritize",
+                "enabled": false,
+                "color": "yellow-green",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1212596232751632",
+                "resource_type": "custom_type_status_option",
+                "name": "backlog",
+                "enabled": true,
+                "color": "cool-gray",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1212596232751630",
+                "resource_type": "custom_type_status_option",
+                "name": "in progress",
+                "enabled": true,
+                "color": "yellow",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1212596232751633",
+                "resource_type": "custom_type_status_option",
+                "name": "blocked",
+                "enabled": false,
+                "color": "orange",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1212596232751634",
+                "resource_type": "custom_type_status_option",
+                "name": "committed",
+                "enabled": true,
+                "color": "green",
+                "completion_state": "Complete"
+              }
+            ]
+          },
+          {
+            "gid": "1218197631711954",
+            "resource_type": "custom_type",
+            "name": "Risk",
+            "asana_created_type_identifier": null,
+            "status_options": [
+              {
+                "gid": "1218197631711950",
+                "resource_type": "custom_type_status_option",
+                "name": "Open",
+                "enabled": true,
+                "color": "yellow",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218197631711951",
+                "resource_type": "custom_type_status_option",
+                "name": "Owned",
+                "enabled": true,
+                "color": "cool-gray",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218207167005244",
+                "resource_type": "custom_type_status_option",
+                "name": "Needs decision",
+                "enabled": true,
+                "color": "yellow-orange",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218197631711952",
+                "resource_type": "custom_type_status_option",
+                "name": "Triggered",
+                "enabled": true,
+                "color": "red",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218197631711953",
+                "resource_type": "custom_type_status_option",
+                "name": "Contained",
+                "enabled": true,
+                "color": "green",
+                "completion_state": "Complete"
+              }
+            ]
+          },
+          {
+            "gid": "1218197631711959",
+            "resource_type": "custom_type",
+            "name": "Decision",
+            "asana_created_type_identifier": null,
+            "status_options": [
+              {
+                "gid": "1218197631711957",
+                "resource_type": "custom_type_status_option",
+                "name": "Pending",
+                "enabled": true,
+                "color": "yellow",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218197631711958",
+                "resource_type": "custom_type_status_option",
+                "name": "Decided",
+                "enabled": true,
+                "color": "green",
+                "completion_state": "Complete"
+              }
+            ]
+          },
+          {
+            "gid": "1218406467942575",
+            "resource_type": "custom_type",
+            "name": "Bug",
+            "asana_created_type_identifier": null,
+            "status_options": [
+              {
+                "gid": "1218406467942570",
+                "resource_type": "custom_type_status_option",
+                "name": "Reported",
+                "enabled": true,
+                "color": "red",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218406467942571",
+                "resource_type": "custom_type_status_option",
+                "name": "Reproduced",
+                "enabled": true,
+                "color": "orange",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218406467942572",
+                "resource_type": "custom_type_status_option",
+                "name": "In progress",
+                "enabled": true,
+                "color": "yellow",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218406467942573",
+                "resource_type": "custom_type_status_option",
+                "name": "Fixed",
+                "enabled": true,
+                "color": "aqua",
+                "completion_state": "Incomplete"
+              },
+              {
+                "gid": "1218406467942574",
+                "resource_type": "custom_type_status_option",
+                "name": "Verified",
+                "enabled": true,
+                "color": "green",
+                "completion_state": "Complete"
+              }
+            ]
+          }
+        ]
+      },
+      "status_code": 200,
+      "headers": {
+        "headers": [],
+        "keys": [],
+        "as_tuples": [],
+        "empty": true
+      }
+    },
+    {
+      "body": {
+        "data": [
+          {
+            "gid": "1211949974283425",
+            "custom_field": {
+              "gid": "1211458117567537",
+              "name": "Estimated time",
+              "precision": 0,
+              "resource_subtype": "number",
+              "resource_type": "custom_field",
+              "type": "number",
+              "privacy_setting": "public_with_guests",
+              "default_access_level": "admin",
+              "is_formula_field": false
+            },
+            "is_important": true,
+            "parent": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "project": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "resource_type": "custom_field_setting"
+          },
+          {
+            "gid": "1212596728143417",
+            "custom_field": {
+              "gid": "1212596721254645",
+              "enum_options": [
+                {
+                  "gid": "1212596721254646",
+                  "color": "hot-pink",
+                  "enabled": true,
+                  "name": "chore",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596721254647",
+                  "color": "orange",
+                  "enabled": true,
+                  "name": "fix",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596721254648",
+                  "color": "yellow-green",
+                  "enabled": true,
+                  "name": "feat",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596721254649",
+                  "color": "yellow",
+                  "enabled": true,
+                  "name": "wip",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596721254650",
+                  "color": "indigo",
+                  "enabled": true,
+                  "name": "refactor",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596721254651",
+                  "color": "purple",
+                  "enabled": true,
+                  "name": "style",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596721254652",
+                  "color": "magenta",
+                  "enabled": true,
+                  "name": "doc",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596721254653",
+                  "color": "aqua",
+                  "enabled": true,
+                  "name": "build",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212596728143413",
+                  "color": "blue",
+                  "enabled": true,
+                  "name": "test",
+                  "resource_type": "enum_option"
+                }
+              ],
+              "name": "Commit type",
+              "resource_subtype": "enum",
+              "resource_type": "custom_field",
+              "type": "enum",
+              "privacy_setting": "public_with_guests",
+              "default_access_level": "admin",
+              "is_formula_field": false
+            },
+            "is_important": true,
+            "parent": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "project": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "resource_type": "custom_field_setting"
+          },
+          {
+            "gid": "1212596232751638",
+            "custom_field": {
+              "gid": "1211751528079363",
+              "enum_options": [
+                {
+                  "gid": "1211751528079366",
+                  "color": "red",
+                  "enabled": true,
+                  "name": "P0: urgent",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1211751528079367",
+                  "color": "hot-pink",
+                  "enabled": true,
+                  "name": "P1: high",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1211751528079368",
+                  "color": "yellow-orange",
+                  "enabled": true,
+                  "name": "P2: medium",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1211751528079369",
+                  "color": "cool-gray",
+                  "enabled": true,
+                  "name": "P3: low",
+                  "resource_type": "enum_option"
+                }
+              ],
+              "name": "Priority",
+              "resource_subtype": "enum",
+              "resource_type": "custom_field",
+              "type": "enum",
+              "privacy_setting": "public_with_guests",
+              "default_access_level": "admin",
+              "is_formula_field": false
+            },
+            "is_important": true,
+            "parent": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "project": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "resource_type": "custom_field_setting"
+          },
+          {
+            "gid": "1212606927281906",
+            "custom_field": {
+              "gid": "1212606927281899",
+              "enum_options": [
+                {
+                  "gid": "1212606927281900",
+                  "color": "red",
+                  "enabled": true,
+                  "name": "high",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212606927281901",
+                  "color": "yellow",
+                  "enabled": true,
+                  "name": "medium",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212606927281902",
+                  "color": "aqua",
+                  "enabled": true,
+                  "name": "low",
+                  "resource_type": "enum_option"
+                }
+              ],
+              "name": "Effort",
+              "resource_subtype": "enum",
+              "resource_type": "custom_field",
+              "type": "enum",
+              "privacy_setting": "public_with_guests",
+              "default_access_level": "admin",
+              "is_formula_field": false
+            },
+            "is_important": true,
+            "parent": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "project": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "resource_type": "custom_field_setting"
+          },
+          {
+            "gid": "1212606946907315",
+            "custom_field": {
+              "gid": "1212581519025954",
+              "enum_options": [
+                {
+                  "gid": "1212581519025955",
+                  "color": "orange",
+                  "enabled": true,
+                  "name": "high",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212581519025956",
+                  "color": "yellow",
+                  "enabled": true,
+                  "name": "medium",
+                  "resource_type": "enum_option"
+                },
+                {
+                  "gid": "1212581519025957",
+                  "color": "cool-gray",
+                  "enabled": true,
+                  "name": "low",
+                  "resource_type": "enum_option"
+                }
+              ],
+              "name": "Impact",
+              "resource_subtype": "enum",
+              "resource_type": "custom_field",
+              "type": "enum",
+              "privacy_setting": "public_with_guests",
+              "default_access_level": "admin",
+              "is_formula_field": false
+            },
+            "is_important": true,
+            "parent": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "project": {
+              "gid": "1211666302652903",
+              "resource_subtype": "default_project",
+              "name": "thisiskrystina.com",
+              "resource_type": "project"
+            },
+            "resource_type": "custom_field_setting"
+          }
+        ]
+      },
+      "status_code": 200,
+      "headers": {
+        "headers": [],
+        "keys": [],
+        "as_tuples": [],
+        "empty": true
+      }
+    }
+  ]
+}

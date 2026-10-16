@@ -1,0 +1,179 @@
+{
+  "taskTypes": {
+    "Code Issue": "1212596232751635",
+    "statuses": [
+      {
+        "open": "1212596232751627",
+        "completed": false
+      },
+      {
+        "backlog": "1212596232751632",
+        "completed": false
+      },
+      {
+        "in progress": "1212596232751630",
+        "completed": false
+      },
+      {
+        "committed": "1212596232751634",
+        "completed": true
+      }
+    ]
+  },
+
+    "Risk": "1218197631711954",
+    "statuses": [
+      {
+        "Open": "1218197631711950",
+        "completed": false
+      },
+      {
+        "Owned": "1218197631711951",
+        "completed": false
+      },
+      {
+        "Needs decision": "1218207167005244",
+        "completed": false
+      },
+      {
+        "Triggered": "1218197631711952",
+        "completed": false
+      },
+      {
+        "Contained": "1218197631711953",
+        "completed": true
+      }
+    ]
+  },
+  {
+    "Decision": "1218197631711959",
+    "statuses": [
+      {
+        "Pending": "1218197631711957",
+        "completed": false
+      },
+      {
+        "Decided": "1218197631711958",
+        "completed": true
+      }
+    ]
+  },
+  {
+    "Bug": "1218406467942575",
+    "statuses": [
+      {
+        "Reported": "1218406467942570",
+        "completed": false
+      },
+      {
+        "Reproduced": "1218406467942571",
+        "completed": false
+      },
+      {
+        "In progress": "1218406467942572",
+        "completed": false
+      },
+      {
+        "Fixed": "1218406467942573",
+        "completed": false
+      },
+      {
+        "Verified": "1218406467942574",
+        "completed": true
+      }
+    ]
+  }
+},
+"customFields": {
+  {
+    "name": "Estimated time",
+    "gid": "1211458117567537",
+    "type": "number"
+  },
+{
+    "name": "Commit type",
+    "gid": "1212596721254645",
+    "type": "enum",
+    "enum_options": [
+      {
+        "chore": "1212596721254646"
+      },
+      {
+        "fix": "1212596721254647"
+      },
+      {
+        "feat": "1212596721254648"
+      },
+      {
+        "wip": "1212596721254649"
+      },
+      {
+        "refactor": "1212596721254650"
+      },
+      {
+        "style": "1212596721254651"
+      },
+      {
+        "doc": "1212596721254652"
+      },
+      {
+        "build": "1212596721254653"
+      },
+      {
+        "test": "1212596728143413"
+      }
+    ]
+  },
+{
+    "name": "Priority",
+    "gid": "1211751528079363",
+    "type": "enum",
+    "enum_options": [
+      {
+        "P0: urgent": "1211751528079366"
+      },
+      {
+        "P1: high": "1211751528079367"
+      },
+      {
+        "P2: medium": "1211751528079368"
+      },
+      {
+        "P3: low": "1211751528079369"
+      }
+    ]
+  },
+{
+    "name": "Effort",
+    "gid": "1212606927281899",
+    "type": "enum",
+    "enum_options": [
+      {
+        "high": "1212606927281900"
+      },
+      {
+        "medium": "1212606927281901"
+      },
+      {
+        "low": "1212606927281902"
+      }
+    ],
+  }
+{
+    "name": "Impact",
+    "gid": "1212581519025954",
+    "type": "enum",
+    "enum_options": [
+      {
+        "high": "1212581519025955"
+      },
+      {
+        "medium": "1212581519025956"
+      },
+      {
+        "low": "1212581519025957"
+      }
+    ]
+  }
+}
+}
