@@ -2,9 +2,18 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 # Settings: https://starship.rs/config/
 # See starship-preprompt.sh for preprompt command to detect SSH
-command_timeout = 2000
+command_timeout = 700
+scan_timeout = 35
 
 # CATPUCCIN POWERLINE
+
+# red - ID
+# peach time
+# yellow git 
+# green packages
+# blue - docker
+# lavender - directory
+# bg - cmd_duration, status, jobs
 format = """
 [](red)\
 $os\
@@ -19,6 +28,7 @@ $c\
 $rust\
 $golang\
 $nodejs\
+$conda\
 $bun\
 $php\
 $java\
@@ -26,21 +36,28 @@ $kotlin\
 $haskell\
 $python\
 [](fg:green bg:sapphire)\
-$conda\
+$docker\
+${custom.chezmoi}\
 [](fg:sapphire bg:lavender)\
 $directory\
 [ ](fg:lavender)\
 $cmd_duration\
+$jobs\
 $fill\
 $line_break$character"""
 
 palette = 'catppuccin_mocha'
 
 continuation_prompt = ''
+
+[line_break]
+disabled = false
+
 [fill]
 symbol = '-'
 style = 'bold green'
 
+# ===== ID 
 [os]
 disabled = false
 style = "bg:red fg:crust"
@@ -74,14 +91,31 @@ style_root = "bg:red fg:crust"
 format = '[ $user ]($style)'
 aliases = { "👽" = "KrystinaMartinez", "KrystinaMartinez" = "👽" }
 
+[env_var.SSH_CONNECTION]
+variable ='SSH_CONNECTION'
+symbol = '󰣀'
+format = '[\[$symbol]($style)\]'
+
+[shell]
+format = '\[[$indicator]($style)\]'
+bash_indicator = '󱆃'
+zsh_indicator = ''
+
+[sudo]
+symbol ='🧙 🏽'
+format = '\[[as $symbol]($style)\]'
+
 [directory]
-style = "bg:lavender bold fg:crust"
+style = "bg:lavender fg:crust"
 format = "[ $path ]($style)"
 truncation_length = 3
-truncation_symbol = "…/"
+truncation_symbol = " "
 truncate_to_repo = true
-before_repo_root_style = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+before_repo_root_style = 'bg:lavender dimmed fg:crust'
+repo_root_format = '[$repo_root]($repo_root_style)[$path]($style)'
+repo_root_style = 'bg:lavender bold fg:crust'
 read_only = '🔒'
+
 [directory.substitutions]
 "Documents" = "󰈙 "
 "Downloads" = " "
@@ -89,6 +123,62 @@ read_only = '🔒'
 "Pictures" = " "
 "Developer" = "󰲋 "
 'Projects' = ''
+
+
+
+[time]
+disabled = false
+style = "bg:peach fg:red"
+format = '[[  $time ](fg:crust bg:peach)]($style)'
+use_12hr = true
+
+# ======= Alerts 
+
+[character]
+disabled = false
+success_symbol = '[❯](bold fg:green)'
+error_symbol = '[✗](bold fg:red)'
+vimcmd_symbol = '[❮](bold fg:green)'
+vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
+vimcmd_replace_symbol = '[❮](bold fg:lavender)'
+vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+
+[cmd_duration]
+min_time = 2000
+show_milliseconds = false
+format = " in [$duration]($style)"
+style = "fg:lavender"
+disabled = false
+show_notifications = true
+min_time_to_notify = 45000
+
+[jobs]
+symbol_threshold = 1
+number_threshold = 2
+symbol = ""
+format = '[$symbol$number]($style) '
+style = "bold fg:sapphire"
+
+[hostname]
+format = '\[[$ssh_symbol($hostname)]($style)\] '
+ssh_only = true
+ssh_symbol = '🛸 '
+detect_env_vars = ['SSH_CONNECTION']
+trim_at = '.'
+disabled = true
+
+[status]
+disabled = false
+recognize_signal_code = true
+map_symbol = false
+symbol = ''
+format = '\[[$symbol$common_meaning$signal_name$maybe_int]($style)\]'
+
+
+
+
+# === GIT STUFF =====
+
 
 [git_branch]
 symbol = ""
@@ -197,32 +287,7 @@ ignore_base = false
 [container]
 format = '\[[$symbol \[$name\]]($style)\]'
 
-[time]
-disabled = false
-time_format = "%R"
-style = "bg:peach fg:red"
-format = '[[  $time ](fg:crust bg:peach)]($style)'
-use_12hr = true
-[line_break]
-disabled = false
 
-[character]
-disabled = false
-success_symbol = '[❯](bold fg:green)'
-error_symbol = '[✗](bold fg:red)'
-vimcmd_symbol = '[❮](bold fg:green)'
-vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
-vimcmd_replace_symbol = '[❮](bold fg:lavender)'
-vimcmd_visual_symbol = '[❮](bold fg:yellow)'
-
-[cmd_duration]
-min_time = 2_000
-show_milliseconds = false
-format = " in $duration "
-style = "bg:lavender"
-disabled = false
-show_notifications = true
-min_time_to_notify = 45000
 
 [deno]
 format = '\[[$symbol]($style)\]'
@@ -233,6 +298,7 @@ format = '\[[$symbol$loaded/$allowed]($style)\]'
 [dotnet]
 format = '\[[$symbol(🎯 $tfm)]($style)\]'
 symbol = ''
+
 [git_commit]
 format = '\[[\($hash$tag\)]($style)\]'
 
@@ -242,18 +308,7 @@ format = '\[[+$added]($added_style)\]\[[-$deleted]($deleted_style)\]'
 [git_state]
 format = '\[[$state ($progress_current/$progress_total)]($style)\]'
 
-[hostname]
-format = '\[[$ssh_symbol($hostname)]($style)\] '
-ssh_only = true
-ssh_symbol = '🛸 '
-detect_env_vars = ['SSH_CONNECTION']
-trim_at = '.'
-disabled = true
 
-[env_var.SSH_CONNECTION]
-variable ='SSH_CONNECTION'
-symbol = '󰣀'
-format = '[\[$symbol]($style)\]'
 
 [localip]
 format = '@[[$localipv4]($style)\]'
@@ -267,15 +322,7 @@ format = '\[$symbol[$ram( | $swap)]($style)\]'
 format = '\[[$symbol$version]($style)\]'
 version_format = 'v${major}'
 
-[shell]
-format = '\[[$indicator]($style)\]'
-
-[status]
-format = '\[[$symbol$status]($style)\]'
-
-[sudo]
-symbol ='🧙 🏽'
-format = '\[[as $symbol]($style)\]'
+# ==== PALETTES ========
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -389,5 +436,16 @@ base = "#24273a"
 mantle = "#1e2030"
 crust = "#181926"
 
-
+[custom.chezmoi]
+description = "Chezmoi source directory indicator"
+command = '''
+src=$(chezmoi source-path 2>/dev/null) || exit 1
+if [[! "${PWD}" == "${src}" || "$PWD" == "${src}"/* ]]; then
+    exit 1
+fi
+'''
+when = 'command -v chezmoi >/dev/null 2>&1'
+format = "[$symbol]($style) "
+symbol = ""
+style = "bold bg:sapphire fg:crust"
 
