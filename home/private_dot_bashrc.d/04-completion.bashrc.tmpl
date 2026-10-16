@@ -1,30 +1,25 @@
 #==========AUTO-COMPLETIONS=================
 # Add any auto-completions for CLI tools
 
-# Anything installed via Homebrew
-if type brew &>/dev/null
-then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
-  then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
-    do
-      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
-    done
-  fi
+if has brew; then
+export BASH_COMPLETION_COMPAT_DIR="{{ .brew_prefix }}/etc/bash_completion.d"
+
+  [[ -r "{{ .brew_prefix }}/etc/profile.d/bash_completion.sh" ]] && . "{{ .brew_prefix }}/etc/profile.d/bash_completion.sh"
+
 fi
-
-# 1Password CLI
-source <(op completion bash)
-source <(gh completion -s bash)
-source <(bat --completion bash)
-# fx json viewer
-complete -o filenames -C fx fx
-
-# chezmoi
-source <(chezmoi completion bash)
 
 # treemd shell completion
 source <(COMPLETE=bash treemd)
+
+{{- if eq .chezmoi.os "linux" -}}
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+{{- end -}}
