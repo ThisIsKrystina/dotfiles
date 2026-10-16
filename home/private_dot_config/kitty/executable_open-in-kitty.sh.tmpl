@@ -1,0 +1,60 @@
+#!{{ .brew_bin }}/bash
+# @description Open Finder selections in the running Kitty terminal.
+#   A folder opens a new Kitty window cd'd into it.
+#   A file opens in the editor inside a new Kitty window.
+#   Backs the "Open in Kitty" Finder Quick Action (right-click menu).
+# @param string ... - absolute paths; Finder passes each selected item.
+# @example - open-in-kitty.sh ~/Projects/foo    # folder -> shell there
+# @example - open-in-kitty.sh ~/notes/todo.md   # file   -> editor in kitty
+
+# -u: error on unset vars. pipefail: a failed pipe stage fails the pipe.
+# (No -e: one bad path in a multi-select must not kill the whole run.)
+set -uo pipefail
+
+# --- Fixed install locations ---
+readonly KITTY_APP="/Applications/kitty.app/Contents/MacOS/kitty"
+readonly KITTY_SOCKET="unix:/tmp/mykitty"
+readonly EDITOR_BIN="{{ .brew_bin }}/micro"
+
+# @description Open one Kitty window at a working dir, optionally running a command.
+# @param string $1 - working directory for the new window
+# @param string ... - optional program + args (empty = interactive shell)
+launch_in_kitty() {
+	local cwd="${1:?launch_in_kitty: need a working directory}"
+	shift
+
+	# Preferred: reuse the already-running Kitty via its control socket.
+	if "${KITTY_APP}" @ --to="${KITTY_SOCKET}" launch \
+		--type=os-window --cwd="${cwd}" "$@" 2>/dev/null; then
+		open -a kitty # pull the new window to the foreground
+		return 0
+	fi
+
+	# Fallback: no running Kitty / no socket -> start a fresh instance.
+	"${KITTY_APP}" --single-instance --directory="${cwd}" "$@" &
+}
+
+# @description Route one path: folders open a shell, files open the editor.
+# @param string $1 - absolute path to a file or folder
+open_path() {
+	local target="${1:?open_path: need a path}"
+
+	if [[ -d "${target}" ]]; then
+		launch_in_kitty "${target}"
+	elif [[ -f "${target}" ]]; then
+		launch_in_kitty "$(dirname "${target}")" "${EDITOR_BIN}" "${target}"
+	else
+		printf 'open-in-kitty: not a file or folder: %s\n' "${target}" >&2
+		return 1
+	fi
+}
+
+# --- Main: Finder may pass several selected items at once ---
+if (($# == 0)); then
+	printf 'open-in-kitty: no paths given\n' >&2
+	exit 1
+fi
+
+for path in "$@"; do
+	open_path "${path}" || printf 'open-in-kitty: skipped %s\n' "${path}" >&2
+done

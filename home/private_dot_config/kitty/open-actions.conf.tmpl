@@ -1,0 +1,47 @@
+# ============================================================
+# Kitty open-actions: what happens when you CLICK a path/link
+# that appears INSIDE a kitty window (e.g. in `ls`/`cat` output).
+#
+# Kitty only reads this if the file is named exactly:
+#   ~/.config/kitty/open-actions.conf
+#
+# Each block = matching criteria + one `action`. Blank line separates blocks.
+# ${FILE_PATH} and ${EDITOR} are expanded by kitty (not the shell).
+# https://sw.kovidgoyal.net/kitty/launch/#syntax-reference
+# https://sw.kovidgoyal.net/kitty/generated/launch/#cmdoption-hold
+# ============================================================
+
+# Open directory in a new Kitty window/tab in that directory
+protocol file
+mime inode/directory
+action launch --type=window --location=splits --cwd -- ${FILE_PATH}
+
+# Open image files with icat
+protocol file
+mime image/*
+action launch --type=window --location=hsplit kitten icat --hold -- ${FILE_PATH}
+
+# Markdown -> render with treemd in a new tab
+protocol file
+ext md,markdown
+action launch --type=tab sh -c "treemd ${FILE_PATH}"
+
+# YAML -> interactive viewer
+protocol file
+ext yaml,yml
+action launch --type=tab sh -c "fx --yaml ${FILE_PATH}"
+
+# JSON family -> interactive viewer
+protocol file
+ext json,jsonc,json5
+action launch --type=tab sh -c "fx -- ${FILE_PATH}"
+
+# TOML -> interactive viewer
+protocol file
+ext toml
+action launch --type=tab sh -c "fx --toml ${FILE_PATH}"
+
+# Any other text file -> open in $EDITOR (micro) in a new tab
+protocol file
+mime text/*
+action launch --type=overlay --cwd=current -- wait ${EDITOR} -- ${FILE_PATH}

@@ -1,0 +1,24 @@
+# Controls where files open from kitty
+protocol {{ .chezmoi.config.mode }}
+ext md,markdown
+action launch --type=tab sh -c "treemd ${FILE_PATH}"
+
+# FX
+protocol {{ .chezmoi.config.mode }}
+ext yaml,yml
+action launch --type=tab sh -c "fx --yaml ${FILE_PATH}"
+
+# JSON
+protocol {{ .chezmoi.config.mode }}
+ext {{ .chezmoi.config.format }},jsonc,json5
+action launch --type=tab sh -c "fx -- ${FILE_PATH}"
+
+# TOML
+protocol {{ .chezmoi.config.mode }}
+ext toml
+action launch --type=tab sh -c "fx --toml ${FILE_PATH}"
+
+# Opens in the default editor
+protocol {{ .chezmoi.config.mode }}
+mime text{{ .chezmoi.pathSeparator }}*
+action launch --type=tab -- ${EDITOR} -- ${FILE_PATH}

@@ -1,0 +1,25 @@
+-- ============================================================
+-- Alfred -> Kitty "run command in terminal" bridge
+-- ------------------------------------------------------------
+-- Setup: Alfred Preferences > Features > Terminal/Shell
+--        Application: Custom  ->  paste this script.
+--
+-- How it works:
+--   Alfred passes the typed command in as `q`. We hand that
+--   command straight to Kitty as the new window's program, so
+--   Kitty RUNS it. No simulated Enter key, no send-text race.
+--
+--   --to          talks to the already-running Kitty via its
+--                 control socket (see macos-launch-services-cmdline).
+--   launch        starts a process in a new window.
+--   --type        os-window = fresh window. Change to `tab` if
+--                 you'd rather it open as a tab in the current window.
+--   --hold        keeps the window open after the command exits,
+--                 so output stays on screen to read.
+--   quoted form   AppleScript safely escapes your command so
+--                 spaces and quotes don't break it.
+-- ============================================================
+on alfred_script(q)
+	do shell script "/Applications/kitty.app/Contents/MacOS/kitty @ --to=unix:/tmp/mykitty launch --type=os-window --hold /opt/homebrew/bin/bash -c " & quoted form of q
+	tell application "kitty" to activate
+end alfred_script
