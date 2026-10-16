@@ -1,0 +1,21 @@
+# SSH Configuration for GitHub Authentication
+Host pipi-git-auth
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/pipi_to_git_auth
+  AddKeysToAgent yes
+
+# SSH Configuration for GitHub Commit Signing
+Host pipi-git-sign
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/pipi_to_git_sign
+  AddKeysToAgent yes
+
+# Remote into MBP
+Host corchina
+  HostName {{ onepasswordRead "op://local/e4emewf2433h7w6ikiaqazuije/Admin Console/admin console URL"}}
+  User {{ onepasswordRead "op://local/e4emewf2433h7w6ikiaqazuije/username"}}
+  Port {{ onepasswordRead "op://local/e4emewf2433h7w6ikiaqazuije/local/port"}}
+  IdentityFile ~/.ssh/pipi_to_corchina
+  AddKeysToAgent yes

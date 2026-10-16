@@ -1,9 +1,9 @@
-{{ if ne .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.os "darwin" -}}
 # Added by OrbStack: 'orb' SSH host for Linux machines
 # This only works if it's at the top of ssh_config (before any Host blocks).
 # This won't be added again if you remove it.
 Include ~/.orbstack/ssh/config
-{{ end -}}
+
 
 # macOS-only keywords (UseKeychain) — tell non-mac ssh to skip them instead of erroring
 IgnoreUnknown UseKeychain
@@ -15,10 +15,10 @@ Port {{ onepasswordRead "op://pipi/Pipi/Local/port"}}
 IdentityFile ~/.ssh/mbp_remote_to_pipi
 ForwardAgent yes
 
-{{ if eq .chezmoi.os "darwin" -}}
+
 Host *
 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-{{ end -}}
+
 Host github.com
     Hostname ssh.github.com
     Port 443
@@ -36,4 +36,6 @@ AddKeysToAgent yes
 UseKeychain yes
 IdentityFile ~/.ssh/github_auth
 
-
+{{ else if eq .chezmoi.os "linux" -}}
+{{ template "pi_ssh_config" }}
+{{- end -}}

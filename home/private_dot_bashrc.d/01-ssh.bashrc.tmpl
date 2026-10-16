@@ -11,11 +11,15 @@ eval $(ssh-agent -s) >/dev/null 2>&1 #silently
 ssh-add --apple-use-keychain ~/.ssh/github_auth >/dev/null 2>&1 
 ssh-add --apple-use-keychain ~/.ssh/github_sign >/dev/null 2>&1
 
-
 # Suppress the deprecated flag warning
 export APPLE_SSH_ADD_BEHAVIOR="Apple"
 {{ else if eq .chezmoi.os "linux" -}}
-# Pi stuff here
+#  Start SSH Agent
+eval "$(ssh-agent -s)"
+
+# Load these keys
+ssh-add ~/.ssh/pipi_to_git_auth 2>/dev/null || true
+ssh-add ~/.ssh/pipi_to_git_sign 2>/dev/null || true
 {{ end -}}
 
 
