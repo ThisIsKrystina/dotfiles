@@ -29,6 +29,11 @@ secrets = "error"
 identity = "~/.config/chezmoi/key.txt"
 recipient = "age130lu6jzffmsh6eanu9mym8el3gtvk5a36fxvta74k0sc0h7gnegserk2dk"
 
+[git]
+autoAdd = true
+autoCommit = true
+commitMessageTemplate = "{{ promptString \"Commit message\" }}" 
+
 [diff]
 pager = "delta"
 pagerArgs = ["--keep-plus-minus-markers"]
